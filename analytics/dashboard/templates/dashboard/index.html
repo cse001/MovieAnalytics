@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>
+            Data Analytics
+
+
+         </title>
+        <script type="text/javascript">
+          function myFunction()
+          {
+              var value1=parameter();
+              var value2= onChange();
+              alert(value1 + " " + value2);
+          }
+
+          function parameter()
+          {
+              var selectBox = document.getElementById("selectBox");
+              var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+              return selectedValue;
+          }
+
+          function onChange()
+          {
+              var selectBox = document.getElementById("selectBox2");
+              var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+              return selectedValue;
+          }
+        </script>
+
+    </head>
+
+    <body bgcolor="#D3D3D3">
+
+    <style>
+        header{
+            background: black;
+            padding : 30px;
+            text-align: center;
+            color: white
+        }
+        center{
+            text-align: center;
+        }
+        div{
+            background: gray;
+            padding: 30px;
+            color: black;
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 170px;
+            width: 30%;
+            text-align: center;
+            display: inline-block;
+        }
+        span{
+            margin-left: 40px;
+            width: 50px;
+
+        }
+        space{
+            background: #D3D3D3;
+        }
+    </style>
+
+    <header>
+        Choose options to perform data analytics on
+    </header>
+
+
+    <section>
+      <form method="POST" action="{% url "hi" %}">
+        {% csrf_token %}
+        {{preset_form}}
+        {% if req %}
+        <input type="submit" value="Submit"/>
+        {% endif %}
+      </form>
+
+      {% if PATH %}
+      <div id="first" style="text-align= center;height: 600; width:600">
+        <p>
+          <img src="{{PATH}}chart1.png" width="600" height="600" align="left">
+          <!-- {% for facts in factlist%}
+            <section> {{facts}} </section>
+          {% endfor %} -->
+        </p>
+      </div>
+      <a href="{% url 'welcome'%}"> Go Back To Dashboard </a>
+      {% endif%}
+    </body>
+
+</html>
